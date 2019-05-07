@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=" utf-8">
+<title>www.jb51.net jQuery实现checkBox全选</title>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script language="javascript" type="text/javascript">
+  /*
+  *统一设置所有条目的
+  */
+  function setItemCheckBox(flag) {
+    $(":checkbox[name=checkboxBtn]").prop("checked",flag);
+  }
+  $(function () {
+    //点击全选
+    $("#selectAll").click(function(){
+      //1.获取全选的状态
+      var flag = this.checked;//获取全选的状态
+      if(flag){
+        $(this).prop("checked", true);
+      }else{
+        $(this).prop("checked", false);
+      }
+      //var flag = $(":checkbox[name=selectAll]").attr("checked");//jquery-1.5.1的用法
+      //2.让所有条目的复选框与全选的状态同步
+      //alert(flag);
+      setItemCheckBox(flag);
+    });
+    //给所有复选框添加事件
+    $(":checkbox[name=checkboxBtn]").click(function(){
+      var flagV = this.checked;
+      if(flagV){
+        $(this).prop("checked", true);
+      }else{
+        $(this).prop("checked", false);
+      }
+      //获取所有复选框的个数
+      var len = $(":checkbox[name=checkboxBtn]").length;
+      //获取所有被选中的复选框的个数
+      var checked_len = $(":checkbox[name=checkboxBtn]:checked").length;
+      if(len == checked_len){
+        //alert("全选中了");
+        $("#selectAll").prop("checked",true);
+      } else if(checked_len == 0) {
+        $("#selectAll").prop("checked",false);
+      } else {
+        $("#selectAll").prop("checked",false);
+      }
+    });
+  });
+</script>
+<body>
+<div id="songList">
+  <input type="checkbox" value="歌曲1" name="checkboxBtn"/>歌曲1<br />
+  <input type="checkbox" value="歌曲2" name="checkboxBtn"/>歌曲2<br />
+  <input type="checkbox" value="歌曲3" name="checkboxBtn"/>歌曲3<br />
+</div>
+<input type="checkbox" id="selectAll" name="selectAllBtn"/>全选<br />
+</body>
+</html>
