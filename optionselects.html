@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jasmine Test Runner</title>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	</head>
+
+<body>
+	<div class="row">
+	<div class="col-xs-5">
+	<select name="from" id="selectBox" class="form-control" size="8" multiple="multiple" >
+<option  name="chkId"  value="26">26</option>
+<option  name="chkId"  value="25">25</option>
+<option  name="chkId"  value="22">22</option>
+<option  name="chkId"  value="23">23  </option>
+<option  name="chkId"  value="21">21</option>
+<option  name="chkId"  value="24">24</option>
+</select >
+</select>
+
+</div>
+
+
+</div>
+<button class="all">获得所有项</button>
+<button class="select" >获得选中项</button>
+        <script>
+            $(function(){
+                var val = '';
+                var strSel = '';
+                $(".all").click(function(){
+                    $("[name='chkId']").each(function(index, element) {
+                         val += $(this).val() + ",";
+                     });
+                    alert("所有项："+val);
+                })
+
+                $(".select").click(function(){
+									var val = '';
+									var strSel = '';
+                    $("#selectBox option:selected").each(function(index, element) {
+
+                         strSel += $(this).val() + ",";
+
+												 $("#selectBox  option").attr('selected','');
+                     });
+                    alert("选中项："+strSel);
+                })
+            })
+        </script>
+</body>
+
+</html>
